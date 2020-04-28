@@ -6,24 +6,24 @@ import {FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 
 import {authInterceptorProviders } from '../helpers/auth.interceptor';
+import { LoginRegisterModule } from './login-register/login-register.module';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    LoginRegisterModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

@@ -1,31 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from './services/token-storage.service';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: [],
+  styleUrls: ['./app.component.css'],
   providers:[]
 })
 export class AppComponent implements OnInit {
   title = 'jwtAuth';
-  isLoggedIN = false;
+  isLoggedIn = false;
   username: string;
 
-  constructor(private tokenService: TokenStorageService){}
+  constructor(private authService:AuthService){}
 
   ngOnInit(){
-    this.isLoggedIN = !!this.tokenService.getToken();
-
-    if(this.isLoggedIN){
+   /* this.isLoggedIn = !!this.tokenService.getToken();
+    console.log("App component isLoggedIn ",this.isLoggedIn);
+    if(this.isLoggedIn){
       const user = this.tokenService.getUser();
 
       this.username = user;
-    }
+    }*/
+
+    this.authService.autoLogin();
   }
 
-  logout() {
-    this.tokenService.signOut();
-    window.location.reload();
-  }
+ 
 }

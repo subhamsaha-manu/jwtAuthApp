@@ -6,9 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+@Component
 public class JwtUtils {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
@@ -19,12 +21,10 @@ public class JwtUtils {
     @Value("${expiration}")
     private int jwtExpirationTime;
 
-    public String generateJwtToken(Authentication authentication){
+    public String generateJwtToken(String userName){
 
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-
-        return Jwts.builder()
-                .setSubject((userDetails.getUsername()))
+      return Jwts.builder()
+                .setSubject(userName)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime()+jwtExpirationTime))
                 .signWith(SignatureAlgorithm.HS512,secretKey)
