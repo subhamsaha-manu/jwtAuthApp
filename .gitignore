@@ -8,8 +8,13 @@
 /bazel-out
 
 # dependencies
-/node_modules
-
+node_modules/
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+logs/
 # profiling files
 chrome-profiler-events.json
 speed-measure-plugin.json
@@ -44,3 +49,4 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+jwtAuth.iml
