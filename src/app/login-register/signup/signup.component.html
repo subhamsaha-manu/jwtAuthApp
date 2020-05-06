@@ -50,6 +50,16 @@
             formControlName="password"/>
         </div>
         <div class="form-group">
+          <label for="country">Country</label>
+        <select class="form-control"
+          name="country"
+          formControlName = "country"
+          (change)="populateState($event)">
+          <option *ngFor="let countryItem of countryList"
+           [value]="countryItem.countryCode">{{countryItem.countryName}}</option>
+         </select>
+        </div>
+        <div class="form-group">
           <button class="btn btn-primary btn-block">
             SignUp
           </button>

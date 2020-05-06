@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.Map;
 
 @CrossOrigin(origins = "*",maxAge = 3600)
 @RestController
@@ -62,7 +63,7 @@ public class AuthController {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
         System.out.println("Jwt created "+jwt);
-        HashMap responseBody = new HashMap();
+        Map responseBody = new HashMap();
         responseBody.put("id",userDetails.getId());
         responseBody.put("email",userDetails.getEmail());
         responseBody.put("jwtToken",jwt);

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { UserService } from '../services/user.service';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -10,7 +8,7 @@ import { UserService } from '../services/user.service';
 export class HomeComponent implements OnInit {
   content: string;
   isLoggedIn = false;
-  constructor(private authService : AuthService,private userService: UserService) { }
+  constructor(private authService : AuthService) { }
   
   ngOnInit() {
   /*  this.isLoggedIn = !!this.tokenService.getToken();
@@ -29,14 +27,5 @@ export class HomeComponent implements OnInit {
 }
 logout() {
   this.authService.logout();
- }
-
- test(){
-   console.log("Test() in component")
-  this.userService.getPublicContent().subscribe(data=>{
-    console.log("Public content ",data);
-  },err=>{
-    console.log("Public content error ",err);
-  });
  }
 }

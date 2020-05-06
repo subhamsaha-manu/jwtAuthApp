@@ -1,4 +1,4 @@
-package com.self.learning.jwtAuthApp.repository.security;
+package com.self.learning.jwtAuthApp.security;
 
 import com.self.learning.jwtAuthApp.services.UserDetailsServiceImpl;
 import com.self.learning.jwtAuthApp.utility.JwtUtils;
@@ -14,7 +14,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -37,14 +36,8 @@ public class AuthTokenFilter extends OncePerRequestFilter {
             System.out.println("Jwt in AuthTokenFilter "+jwt);
             if(jwt != null && jwtUtils.validateJwtToken(jwt)){
                 String userName = jwtUtils.getUserNameFromJwtToken(jwt);
-                System.out.println("userName in AuthTokenFilter "+userName);
                 UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
-                System.out.println("=========================================================");
-                System.out.println("User details in auth token filter"+userDetails.getUsername()+"\t"+userDetails.isAccountNonLocked());
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
-                System.out.println("=========================================================");
-                System.out.println("=========================================================");
-                System.out.println("Request in auth token "+request.getRequestURI());
                 authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
                 response.setHeader("Access-Control-Allow-Origin", "*");
