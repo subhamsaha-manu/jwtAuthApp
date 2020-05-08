@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface StateRepository extends JpaRepository<State,Integer> {
 
-    List findAllByCountryCode(String countryCode);
+    List<State> findAllByCountryCode(String countryCode);
 }

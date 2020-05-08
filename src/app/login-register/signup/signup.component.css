@@ -1,0 +1,62 @@
+.signup-form{
+    width: 700px;
+}
+.signUp-card-content{
+    margin-left: 80px;
+}
+.name-fields{
+    width: 40%;
+    margin-right: 20px;
+}
+
+.radio-button{
+    margin-right: 20px;
+}
+
+.phoneNumber{
+    width: 40%;
+    margin-right: 20px;
+}
+
+.email{
+    width: 40%;
+}
+
+.password-fields{
+    width: 40%;
+    margin-right: 20px;
+}
+
+.address-field1{
+    width: 85%;
+}
+
+.address-field2{
+    width: 40%;
+    margin-right: 20px;
+}
+
+.zipCode{
+    width: 40%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.dropdown-field{
+    width: 40%;
+    margin-right: 20px;
+}
+
+.signup-button{
+    padding: 5px;
+    width: 50%;
+}

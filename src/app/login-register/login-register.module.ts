@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { SignupComponent } from './signup/signup.component';
+import { AngularMaterialModule } from '../angular.material.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { SignupComponent } from './signup/signup.component';
     RouterModule,
     CommonModule,// added to get accesss to ngFor and ngIf
     LoginRegisterRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularMaterialModule
   ],
   exports:[
     LoginComponent,

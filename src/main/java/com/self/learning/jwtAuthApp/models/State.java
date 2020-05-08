@@ -2,6 +2,7 @@ package com.self.learning.jwtAuthApp.models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class State {
@@ -13,7 +14,8 @@ public class State {
 
     private String stateName;
 
-    private String countryCode;
+    @ManyToOne
+    private Country country;
 
     public int getStateId() {
         return stateId;
@@ -37,13 +39,5 @@ public class State {
 
     public void setStateName(String stateName) {
         this.stateName = stateName;
-    }
-
-    public String getCountryCode() {
-        return countryCode;
-    }
-
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
     }
 }

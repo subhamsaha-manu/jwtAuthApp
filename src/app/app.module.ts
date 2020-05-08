@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import {authInterceptorProviders } from '../helpers/auth.interceptor';
 import { LoginRegisterModule } from './login-register/login-register.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     FormsModule,
     HttpClientModule,
     NgbModule,
-    LoginRegisterModule
+    LoginRegisterModule,
+    BrowserAnimationsModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

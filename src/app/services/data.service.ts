@@ -10,27 +10,29 @@ export interface Country{
   countryName : string;
 }
 
+export interface State{
+  stateCode:string;
+  stateName : string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-
-  
-
   constructor(private http: HttpClient) { }
 
   
-  getCountryList() {
+  getCountryList():Observable<Country> {
     console.log("getCountry() in service")
-    return this.http.get(API_URL + 'countries')
+    return this.http.get<Country>(API_URL + 'countries')
  }
 
- getStateList(selectedCountry:string) {
+ getStateList(selectedCountry:string):Observable<State> {
   console.log("getCountry() in service")
   let params = new HttpParams();
   params = params.append('selecetedCountry',selectedCountry);
-  return this.http.get(API_URL + 'states',{params:params});
+  return this.http.get<State>(API_URL + 'states',{params:params});
   
 }
  

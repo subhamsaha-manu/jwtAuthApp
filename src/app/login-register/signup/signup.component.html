@@ -1,69 +1,140 @@
-<div class="col-md-12">
-    <div class="card card-container">
-      <form [formGroup]="signUpForm" (ngSubmit)= "onSubmit()">
-        <div class="form-group">
-          <label for="firstName">First Name</label>
-          <input
-            type="text"
-            class="form-control"
-            name="firstName"
-            formControlName="firstName"/>
-        </div>
-        <div class="form-group">
-          <label for="middleName">Middle Name</label>
-          <input
-            type="text"
-            class="form-control"
-            name="middleName"
-            formControlName="middleName"/>
-        </div>
-        <div class="form-group">
-          <label for="lastName">Last Name</label>
-          <input
-            type="text"
-            class="form-control"
-            name="lastName"
-            formControlName="lastName"/>
-        </div>
-        <div class="form-group">
-          <label for="mobileNumber">Mobile Number</label>
-          <input
-            type="tel"
-            class="form-control"
-            name="mobileNumber"
-            formControlName="mobileNumber"/>
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="text"
-            class="form-control"
+<mat-card class="signup-form">
+  <mat-card-header >
+    <mat-button-toggle-group name="registerMode" aria-label="SignUp-SignIn" >
+      <mat-button-toggle value="signUp">SignUp</mat-button-toggle>
+      <mat-button-toggle value="signIn">SignIn</mat-button-toggle>
+    </mat-button-toggle-group>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content class="signUp-card-content">
+         <form [formGroup]="signUpForm" (ngSubmit)= "onSubmit()">
+          <mat-form-field  [floatLabel] = "always" class="name-fields" style="margin-top: 20px;">
+            <mat-label>First Name </mat-label>
+            <input 
+              type="text"
+              matInput placeholder="First Name"
+              name="firstName"
+              formControlName="firstName"/>
+          </mat-form-field>
+          <mat-form-field  [floatLabel] = "always" class="name-fields">
+            <mat-label>Middle Name </mat-label>
+            <input 
+              type="text"
+              matInput placeholder="Middle Name"
+              name="middleName"
+              formControlName="middleName"/>
+          </mat-form-field>
+          <mat-form-field  [floatLabel] = "always" class="name-fields">
+            <mat-label>Last Name </mat-label>
+            <input 
+              type="text"
+              matInput placeholder="Last Name"
+              name="lastName"
+              formControlName="lastName"/>
+          </mat-form-field>
+          <mat-radio-group formControlName="gender">
+            <mat-radio-button class="gender-section-margin" value="male" class="radio-button">Male</mat-radio-button>
+            <mat-radio-button class="gender-section-margin" value="female" class="radio-button">Female</mat-radio-button>
+            <mat-radio-button class="gender-section-margin" value="others" class="radio-button">Others</mat-radio-button>
+          </mat-radio-group>
+         <mat-form-field class="phoneNumber">
+            <mat-label>Mobile Number</mat-label>
+            <span matPrefix>+91 &nbsp;</span>
+            <input type="tel" matInput
+              name="mobileNumber"
+              formControlName="mobileNumber"/>
+            <mat-icon matSuffix><span class="material-icons">
+              ring_volume
+              </span></mat-icon>
+          </mat-form-field>
+          <mat-form-field class="email">
+            <mat-label>Email</mat-label>
+            <input type="email"
+            matInput 
             name="email"
-            formControlName="email"/>
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            name="password"
-            formControlName="password"/>
-        </div>
-        <div class="form-group">
-          <label for="country">Country</label>
-        <select class="form-control"
-          name="country"
-          formControlName = "country"
-          (change)="populateState($event)">
-          <option *ngFor="let countryItem of countryList"
-           [value]="countryItem.countryCode">{{countryItem.countryName}}</option>
-         </select>
-        </div>
-        <div class="form-group">
-          <button class="btn btn-primary btn-block">
-            SignUp
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
+            formControlName="email" 
+            [errorStateMatcher]="EmailValidityMatcher"/>
+            <mat-icon matSuffix><span class="material-icons">
+              alternate_email
+              </span></mat-icon>
+            <mat-error *ngIf="signUpForm.hasError('email') && !signUpForm.hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="signUpForm.hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="password-fields">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'"
+              name="password"
+              formControlName="password"/>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-form-field class="password-fields">
+            <mat-label>Confirm password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'"
+              name="password"
+              formControlName="confirmPassword"
+              [errorStateMatcher]="PasswordMatcher"/>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="signUpForm.hasError('passwordDoNotMatch')">
+              Passwords do not match
+            </mat-error>
+          </mat-form-field>
+          <p>
+            <mat-form-field class="address-field1" >
+              <mat-label>Address</mat-label>
+              <textarea matInput 
+                formControlName = "addressFirstPart"
+                placeholder="House No"></textarea>
+            </mat-form-field>
+            <mat-form-field class="address-field2">
+              <mat-label>Address 2</mat-label>
+              <textarea matInput
+              formControlName = "addressSecondPart"
+              placeholder="Lane/Road/Locality"></textarea>
+            </mat-form-field>
+            <mat-form-field class="zipCode">
+              <mat-label>Zip Code</mat-label>
+               <input type="number" matInput
+                name="zipCode"
+                formControlName="zipCode"/>
+                <mat-icon matSuffix><span class="material-icons">
+                  house
+                  </span></mat-icon>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="dropdown-field">
+              <mat-label>Country</mat-label>
+              <mat-select
+                name="country"
+                formControlName = "country"
+                (selectionChange)="populateState()">
+                 <mat-option *ngFor="let country of countryList"
+                [value]="country.countryCode">{{country.countryName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="dropdown-field">
+              <mat-label>State</mat-label>
+              <mat-select
+              name="state"
+              formControlName = "state">
+                <mat-option *ngFor="let state of stateList"
+                [value]="state.stateCode">{{state.stateName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            </p>
+            <p>
+              <button mat-raised-button color="accent" class="signup-button">Create Account</button>
+            </p>
+            
+        </form>
+      </mat-card-content>
+ 
+</mat-card>
