@@ -1,42 +1,25 @@
 package com.self.learning.jwtAuthApp.models;
 
 
-import org.apache.commons.lang3.StringUtils;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
+@NoArgsConstructor
+@Data
 @Entity
-public class Country {
+public class Country  implements Serializable {
 
     @Id
-    private int countryId = 0;
+    private int countryId;
 
-    private String countryCode = StringUtils.EMPTY;
+    @Column(name = "COUNTRY_CODE")
+    private String code;
 
-    private String countryName = StringUtils.EMPTY;
+    private String countryName;
 
-    public int getCountryId() {
-        return countryId;
-    }
-
-    public void setCountryId(int countryId) {
-        this.countryId = countryId;
-    }
-
-    public String getCountryCode() {
-        return countryCode;
-    }
-
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
-    }
-
-    public String getCountryName() {
-        return countryName;
-    }
-
-    public void setCountryName(String countryName) {
-        this.countryName = countryName;
-    }
+    @OneToMany(mappedBy = "country")
+    private List<State> stateList;
 }

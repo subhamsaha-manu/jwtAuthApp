@@ -31,9 +31,8 @@ export class DataService {
  getStateList(selectedCountry:string):Observable<State> {
   console.log("getCountry() in service")
   let params = new HttpParams();
-  params = params.append('selecetedCountry',selectedCountry);
+  params = params.append('selectedCountry',selectedCountry);
   return this.http.get<State>(API_URL + 'states',{params:params});
   
-}
- 
+  }
 }

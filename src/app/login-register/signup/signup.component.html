@@ -8,7 +8,7 @@
   <mat-divider></mat-divider>
   <mat-card-content class="signUp-card-content">
          <form [formGroup]="signUpForm" (ngSubmit)= "onSubmit()">
-          <mat-form-field  [floatLabel] = "always" class="name-fields" style="margin-top: 20px;">
+          <mat-form-field  [floatLabel] = "always" class="name-fields" style="margin-top: 20px;" appearance="outline"> 
             <mat-label>First Name </mat-label>
             <input 
               type="text"
@@ -16,7 +16,7 @@
               name="firstName"
               formControlName="firstName"/>
           </mat-form-field>
-          <mat-form-field  [floatLabel] = "always" class="name-fields">
+          <mat-form-field  [floatLabel] = "always" class="name-fields" appearance="outline">
             <mat-label>Middle Name </mat-label>
             <input 
               type="text"
@@ -24,7 +24,7 @@
               name="middleName"
               formControlName="middleName"/>
           </mat-form-field>
-          <mat-form-field  [floatLabel] = "always" class="name-fields">
+          <mat-form-field  [floatLabel] = "always" class="name-fields" appearance="outline">
             <mat-label>Last Name </mat-label>
             <input 
               type="text"
@@ -32,12 +32,12 @@
               name="lastName"
               formControlName="lastName"/>
           </mat-form-field>
-          <mat-radio-group formControlName="gender">
+          <mat-radio-group formControlName="gender" appearance="outline">
             <mat-radio-button class="gender-section-margin" value="male" class="radio-button">Male</mat-radio-button>
             <mat-radio-button class="gender-section-margin" value="female" class="radio-button">Female</mat-radio-button>
             <mat-radio-button class="gender-section-margin" value="others" class="radio-button">Others</mat-radio-button>
           </mat-radio-group>
-         <mat-form-field class="phoneNumber">
+         <mat-form-field class="phoneNumber"  appearance="fill">
             <mat-label>Mobile Number</mat-label>
             <span matPrefix>+91 &nbsp;</span>
             <input type="tel" matInput
@@ -47,7 +47,7 @@
               ring_volume
               </span></mat-icon>
           </mat-form-field>
-          <mat-form-field class="email">
+          <mat-form-field class="email" appearance="outline">
             <mat-label>Email</mat-label>
             <input type="email"
             matInput 
@@ -64,7 +64,7 @@
               Email is <strong>required</strong>
             </mat-error>
           </mat-form-field>
-          <mat-form-field class="password-fields">
+          <mat-form-field class="password-fields" appearance="outline">
             <mat-label>Password</mat-label>
             <input matInput [type]="hide ? 'password' : 'text'"
               name="password"
@@ -73,7 +73,7 @@
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
           </mat-form-field>
-          <mat-form-field class="password-fields">
+          <mat-form-field class="password-fields" appearance="outline">
             <mat-label>Confirm password</mat-label>
             <input matInput [type]="hide ? 'password' : 'text'"
               name="password"
@@ -87,19 +87,19 @@
             </mat-error>
           </mat-form-field>
           <p>
-            <mat-form-field class="address-field1" >
+            <mat-form-field class="address-field1" appearance="outline" >
               <mat-label>Address</mat-label>
               <textarea matInput 
                 formControlName = "addressFirstPart"
                 placeholder="House No"></textarea>
             </mat-form-field>
-            <mat-form-field class="address-field2">
+            <mat-form-field class="address-field2" appearance="outline">
               <mat-label>Address 2</mat-label>
               <textarea matInput
               formControlName = "addressSecondPart"
               placeholder="Lane/Road/Locality"></textarea>
             </mat-form-field>
-            <mat-form-field class="zipCode">
+            <mat-form-field class="zipCode" appearance="outline">
               <mat-label>Zip Code</mat-label>
                <input type="number" matInput
                 name="zipCode"
@@ -110,7 +110,7 @@
             </mat-form-field>
           </p>
           <p>
-            <mat-form-field class="dropdown-field">
+            <mat-form-field class="dropdown-field" appearance="outline">
               <mat-label>Country</mat-label>
               <mat-select
                 name="country"
@@ -124,7 +124,7 @@
               <mat-label>State</mat-label>
               <mat-select
               name="state"
-              formControlName = "state">
+              formControlName = "state" appearance="outline">
                 <mat-option *ngFor="let state of stateList"
                 [value]="state.stateCode">{{state.stateName}}</mat-option>
               </mat-select>

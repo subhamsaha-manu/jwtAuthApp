@@ -1,7 +1,7 @@
 package com.self.learning.jwtAuthApp.controllers;
 
 
-import com.self.learning.jwtAuthApp.services.UtilityService;
+import com.self.learning.jwtAuthApp.services.UtilityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import java.util.HashMap;
 public class UtilityController {
 
     @Autowired
-    UtilityService utilityService;
+    UtilityServiceImpl utilityService;
 
 
     @GetMapping("/countries")
@@ -26,9 +26,9 @@ public class UtilityController {
     }
 
     @GetMapping("/states")
-    public ResponseEntity<?> getStatesForSelectedCountry(@RequestParam("selecetedCountry") String selecetedCountry){
-        System.out.println("param"+selecetedCountry);
-        HashMap<String,String> mapOfStates = utilityService.getStateListForSelectedCountry(selecetedCountry);
+    public ResponseEntity<?> getStatesForSelectedCountry(@RequestParam("selectedCountry") String selectedCountry){
+        System.out.println("param "+selectedCountry);
+        HashMap<String,String> mapOfStates = utilityService.getStateListForSelectedCountry(selectedCountry);
 
         return new ResponseEntity (mapOfStates,null, HttpStatus.OK);
     }
